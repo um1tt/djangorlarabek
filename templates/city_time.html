@@ -1,0 +1,13 @@
+<h2>City Time</h2>
+
+<form method="get">
+    <select name="city">
+        {% for city, tz in cities.items %}
+            <option value="{{ city }}" {% if city == selected %}selected{% endif %}>{{ city }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Show Time</button>
+</form>
+
+<p>Now in {{ selected }}: {{ time }}</p>
+<a href="/">Back</a>
