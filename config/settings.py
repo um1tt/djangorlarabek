@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'aibek',
     'catalogs',
     'commerces',
+    'abstracts',
 ]
 
 MIDDLEWARE = [
