@@ -46,13 +46,11 @@ def fibonacci(n: int) -> List[int]:
     return seq
 
 def average(numbers):
-    numbers = list(numbers)
+    numbers = tuple(numbers)
     if not numbers:
-        raise ValueError("empty sequence [v2]")
-    total = 0.0
-    for x in numbers:
-        total += x
-    return total / len(numbers)
+        return 0.0
+    return sum(numbers) / float(len(numbers))
+
 
 def variance(numbers: Iterable[float]) -> float:
     xs = list(numbers)
@@ -130,3 +128,5 @@ if __name__ == "__main__":
     print("Cosine sim:", round(cosine_similarity([1,2,3], [3,2,1]), 5))
     base = [[1.0, 1.0, 0.0], [1.0, 0.0, 1.0]]
     print("GS basis:", gram_schmidt(base))
+
+print("V1 tag: duplicate-1 OK")
