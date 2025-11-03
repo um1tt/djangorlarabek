@@ -34,11 +34,16 @@ def grade(score: int) -> str:
     if score >= 60: return "D"
     return "F"
 
-def grade_distribution(data: List[Dict]) -> Dict[str, int]:
-    grades = {"A":0, "B":0, "C":0, "D":0, "F":0}
+def grade_distribution(data):
+    grades = {"A":0, "B":0, "C":0, "D":0, "E":0, "F":0}
     for s in data:
-        g = grade(s["score"])
-        grades[g] += 1
+        score = s["score"]
+        if score >= 90: grades["A"] += 1
+        elif score >= 80: grades["B"] += 1
+        elif score >= 70: grades["C"] += 1
+        elif score >= 60: grades["D"] += 1
+        elif score >= 55: grades["E"] += 1
+        else: grades["F"] += 1
     return grades
 
 def curve_scores(data: List[Dict], bonus: int = 5, cap: int = 100) -> List[Dict]:
