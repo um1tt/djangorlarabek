@@ -35,21 +35,23 @@ def grade(score: int) -> str:
     return "F"
 
 def grade_distribution(data):
-    bounds = [97,93,90,87,83,80,77,73,70,67,63,60]
-    labels = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-", "F"]
-    dist = {k:0 for k in labels}
-    for s in data:
-        sc = s["score"]
-        plased = False
-        for i,b in enumerate(bounds):
-            if sc >= b:
-                dist[labels[i]] += 1
-                placed = True
-                break
-        if not placed:
-            dist["F"] += 1
-    return dist   
-
+    scores = sorted(s["score"] for s in data)
+    if not scores:
+        return {"Q4":0,"Q3":0,"Q2":0,"Q1":0}
+    import math
+    def q(p):
+        k = (len(scores)-1)*p
+        f = math.floor(k); c = math.ceil(k)
+        if f == c: return scores[int(k)]
+        return scores[f] + (scores[c]-scores[f])*(k-f)
+    q1=q(0.25); q2=q(0.5); q3=q(0.75)
+    dist={"Q4":0,"Q3":0,"Q2":0,"Q1":0}
+    for s in scores:
+        if s>=q3: dist["Q4"]+=1
+        elif s>=q2: dist["Q3"]+=1
+        elif s>=q1: dist["Q2"]+=1
+        else: dist["Q1"]+=1
+    return dist
 
 def curve_scores(data: List[Dict], bonus: int = 5, cap: int = 100) -> List[Dict]:
     curved = []
@@ -96,5 +98,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-print("V1 tag: duplicate-1 OK")
