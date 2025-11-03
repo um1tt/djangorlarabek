@@ -35,14 +35,21 @@ def grade(score: int) -> str:
     return "F"
 
 def grade_distribution(data):
-    grades = {"A":0, "B":0, "C":0, "F":0}
+    bounds = [97,93,90,87,83,80,77,73,70,67,63,60]
+    labels = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-", "F"]
+    dist = {k:0 for k in labels}
     for s in data:
         sc = s["score"]
-        if sc >= 90: grades["A"] += 1
-        elif sc >= 75: grades["B"] += 1
-        elif sc >= 60: grades["C"] += 1
-        else: grades["F"] += 1
-    return grades
+        plased = False
+        for i,b in enumerate(bounds):
+            if sc >= b:
+                dist[labels[i]] += 1
+                placed = True
+                break
+        if not placed:
+            dist["F"] += 1
+    return dist   
+
 
 def curve_scores(data: List[Dict], bonus: int = 5, cap: int = 100) -> List[Dict]:
     curved = []
