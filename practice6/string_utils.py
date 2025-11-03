@@ -34,8 +34,7 @@ def most_common_char(text: str) -> str:
     return max(freq, key=freq.get) if freq else ''
 
 def remove_punctuation(text):
-    remove = set(".!,?")
-    return ''.join(c for c in text if c not in remove)
+    return ''.join(c if (c.isalnum() or c.isspace()) else ' ' for c in text)
 
 def tokenize(text: str, keep_case: bool = False) -> List[str]:
     clean = remove_punctuation(text)
