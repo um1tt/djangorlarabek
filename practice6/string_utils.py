@@ -93,3 +93,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+print("V1 tag: duplicate-1 OK")
