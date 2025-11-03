@@ -46,13 +46,11 @@ def fibonacci(n: int) -> List[int]:
     return seq
 
 def average(numbers):
-    numbers = list(numbers)
+    numbers = tuple(numbers)
     if not numbers:
-        raise ValueError("empty sequence [v2]")
-    total = 0.0
-    for x in numbers:
-        total += x
-    return total / len(numbers)
+        return 0.0
+    return sum(numbers) / float(len(numbers))
+
 
 def variance(numbers: Iterable[float]) -> float:
     xs = list(numbers)

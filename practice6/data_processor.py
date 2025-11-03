@@ -35,14 +35,12 @@ def grade(score: int) -> str:
     return "F"
 
 def grade_distribution(data):
-    grades = {"A":0, "B":0, "C":0, "D":0, "E":0, "F":0}
+    grades = {"A":0, "B":0, "C":0, "F":0}
     for s in data:
-        score = s["score"]
-        if score >= 90: grades["A"] += 1
-        elif score >= 80: grades["B"] += 1
-        elif score >= 70: grades["C"] += 1
-        elif score >= 60: grades["D"] += 1
-        elif score >= 55: grades["E"] += 1
+        sc = s["score"]
+        if sc >= 90: grades["A"] += 1
+        elif sc >= 75: grades["B"] += 1
+        elif sc >= 60: grades["C"] += 1
         else: grades["F"] += 1
     return grades
 

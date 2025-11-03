@@ -35,8 +35,9 @@ def most_common_char(text: str) -> str:
 
 def remove_punctuation(text):
     import string
-    allowed = set(string.punctuation) - set(["-", "_"])
-    return ''.join(c for c in text if c not in allowed)
+    s = ''.join(' ' if c in string.punctuation else c for c in text)
+    return ' '.join(s.split()) 
+
 
 def tokenize(text: str, keep_case: bool = False) -> List[str]:
     clean = remove_punctuation(text)
